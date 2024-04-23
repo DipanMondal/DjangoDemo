@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootstrap form example with metadata">
+    <meta name="keywords" content="HTML, CSS, Bootstrap, form">
+    <meta name="author" content="Your Name">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Product Form</title>
+
+    <style>
+    body {
+        background-image: url('bgImage.jpg');
+        background-size: cover; /* Adjusts the background image size to cover the entire element */
+        background-repeat: no-repeat; /* Prevents the background image from repeating */
+        background-position: center center; /* Centers the background image */
+    }
+    </style>
+</head>
+<body >
+<div class="container">
+    <h2 align="center"><b><u>Add Product</u></b></h2>
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post">
+      {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Product Name</label>
+    <input type="text" class="form-control" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Price</label>
+    <input type="text" class="form-control" name="price" required>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Rating</label>
+    <input type="text" class="form-control" name="rating" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
+</div>
+</body>
+</html>
