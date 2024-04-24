@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Bootstrap Table</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
     <title>Products</title>
     <style>
         table {
@@ -14,9 +18,15 @@
             padding: 4px;
             text-align: left;
         }
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
     </style>
 </head>
-<body style="background-image: url(img.jpg); background-size: cover; background-repeat: no-repeat;">
+<body style="background-image: url(img.jpg); background-size: cover; background-repeat: no-repeat;" bgcolor="grey">
+    <a href="/admin-login/" class="btn btn-primary logout-btn">Logout</a>
     <h1 align="center" ><b><u>Products</u></b></h1>
     <table align="center">
         <tr>
@@ -56,5 +66,6 @@
         </tr>
         {% endfor %}
     </table>
+    <a href="/add-product/" class="btn-primary btn-block"><h6 align="center">Add Product</h6> </a>
 </body>
 </html>

@@ -29,7 +29,7 @@ def addProduct(request):
             if rating > 5:
                 return HttpResponse("<h1>Chal Fot</h1><h2>rating 5 er niche de bara</h2>")
             Product.objects.create(name=name,price=price,rating=rating)
-            return HttpResponse("<h1>Thanks for submission</h1>")
+            return HttpResponse("<h1>Thanks for submission</h1><br><a href='/products/'>return to product menu  </a>")
         except:
             return HttpResponse("<h1>Something Went Wrong</h1><h2>Thik thak data de bolod</h2>")
     return render(request,'productForm.html')

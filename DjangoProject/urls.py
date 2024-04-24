@@ -18,10 +18,15 @@ from django.contrib import admin
 from django.urls import path
 
 import MyApp.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',MyApp.views.home,name='home'),
+    path('',accounts.views.home,name='home'),
+    path('admin-login/',accounts.views.adminLogin,name='adminLogin'),
+    path('client-login/',accounts.views.clientLogin,name='clientLogin'),
+    path('admin-signup-form/',accounts.views.adminSignUp,name='admin_signup'),
+    path('client-signup-form/',accounts.views.clientSignUp,name='client_signup'),
     path('chat/',MyApp.views.page,name='chat'),
     path('products/',MyApp.views.product,name='products'),
     path('add-product/',MyApp.views.addProduct,name='add_product'),
