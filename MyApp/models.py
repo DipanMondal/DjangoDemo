@@ -6,4 +6,4 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=20)
     price = models.FloatField()
-    rating = models.IntegerField(max_length=5)
+    rating = models.IntegerField()
