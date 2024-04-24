@@ -34,7 +34,7 @@
             <th>Name</th>
             <th>price</th>
             <th>rating</th>
-            <th>delete</th>
+            <th>delete/update</th>
         </tr>
         {% for product in products %}
         <tr>
@@ -62,6 +62,7 @@
             </td>
             <td>
                 <a href="/delete/{{product.id}}/" class="btn btn-danger">Delete</a>
+                <a href="/update/{{product.id}}/" class="btn btn-success">Update</a>
             </td>
         </tr>
         {% endfor %}

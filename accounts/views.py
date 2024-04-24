@@ -61,7 +61,7 @@ def adminLogin(request):
         try:
             obj = Admin.objects.filter(email=email)[0]
             if obj.password == password:
-                return redirect('/products/')
+                return redirect(f'/products/{obj.id}/')
         except:
             return redirect('/admin-login/')
     return render(request,'adminLogin.html')

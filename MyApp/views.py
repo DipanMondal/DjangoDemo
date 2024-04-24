@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
+from accounts.models import *
 # Create your views here.
 
 
@@ -12,7 +13,10 @@ def page(request):
     return render(request,"test1.html")
 
 
-def product(request):
+def product(request,admin_id):
+    queue = Admin.objects.filter(id=admin_id)
+    if len(queue) == 0:
+        return HttpResponse("<h1>Error !</h1><br><a href='/admin-login/'>return to login page</a>")
     products = []
     for product in Product.objects.all():
         products.append({'id':product.id,'name':product.name,'price':product.price,'rating':product.rating})
@@ -39,3 +43,31 @@ def deleteProduct(request,id):
     obj = Product.objects.get(id=id)
     obj.delete()
     return redirect('/products/')
+
+
+def updateProduct(request,id):
+    if request.method == 'POST':
+        obj = Product.objects.filter(id=id)[0]
+        try:
+            data = request.POST
+            name = data.get('name')
+            if name=='':
+                name = obj.name
+            if data.get('price') != '':
+                price = float(data.get('price'))
+            else:
+                price = obj.price
+            if data.get('rating') != '':
+                rating = int(data.get('rating'))
+            else:
+                rating = obj.rating
+            obj.name = name
+            obj.price = price
+            obj.rating = rating
+            obj.save()
+        except:
+            return HttpResponse(f"""<h2>There was something wrong with input data</h2><br>
+                                <a href='/update/{id}/'>Return to update</a><br>
+                                <a href='/products/'>Return to Product menu</a>""")
+        return redirect(f"/products/")
+    return render(request,'updateProduct.html')

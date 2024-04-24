@@ -28,7 +28,8 @@ urlpatterns = [
     path('admin-signup-form/',accounts.views.adminSignUp,name='admin_signup'),
     path('client-signup-form/',accounts.views.clientSignUp,name='client_signup'),
     path('chat/',MyApp.views.page,name='chat'),
-    path('products/',MyApp.views.product,name='products'),
+    path('products/<admin_id>/',MyApp.views.product,name='products'),
     path('add-product/',MyApp.views.addProduct,name='add_product'),
-    path('delete/<id>/',MyApp.views.deleteProduct,name='deleteProduct')
+    path('delete/<id>/',MyApp.views.deleteProduct,name='deleteProduct'),
+    path('update/<id>/',MyApp.views.updateProduct,name='updateProduct')
 ]
