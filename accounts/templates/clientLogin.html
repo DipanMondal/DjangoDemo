@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-
+  <a href="/" class="btn btn-primary logout-btn"><- Home</a>
   <div class="container">
     <div class="row justify-content-center login-container">
       <div class="col-md-6">
@@ -27,6 +27,13 @@
           <div class="card-body">
             <form class="col-6 mx-auto card p-3 shadow-lg" method="post">
               {% csrf_token %}
+              {% if messages %}
+                <div class="alert alert-primary" role="alert">
+                  {% for message in messages %}
+                    {{message}}
+                  {% endfor %}
+                </div>
+              {% endif %}
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" placeholder="Enter username" name="email" required>
@@ -35,7 +42,7 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
               </div>
-              <a href="/client-signup-form/"><h5 align="center">sign up</h5></a>
+              <p>Don't have an account <a href="/client-signup-form/">register</a></p>
               <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
           </div>

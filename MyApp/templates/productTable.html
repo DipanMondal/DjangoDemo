@@ -27,6 +27,13 @@
 </head>
 <body style="background-image: url(img.jpg); background-size: cover; background-repeat: no-repeat;" bgcolor="grey">
     <a href="/admin-login/" class="btn btn-primary logout-btn">Logout</a>
+    {% if messages %}
+        <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        </div>
+    {% endif %}
     <h1 align="center" ><b><u>Products</u></b></h1>
     <table align="center">
         <tr>

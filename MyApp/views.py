@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
 from accounts.models import *
+from django.contrib import messages
 # Create your views here.
 
 
@@ -13,10 +14,7 @@ def page(request):
     return render(request,"test1.html")
 
 
-def product(request,admin_id):
-    queue = Admin.objects.filter(id=admin_id)
-    if len(queue) == 0:
-        return HttpResponse("<h1>Error !</h1><br><a href='/admin-login/'>return to login page</a>")
+def product(request):
     products = []
     for product in Product.objects.all():
         products.append({'id':product.id,'name':product.name,'price':product.price,'rating':product.rating})
@@ -31,11 +29,15 @@ def addProduct(request):
             price = float(data.get("price"))
             rating = int(data.get("rating"))
             if rating > 5:
-                return HttpResponse("<h1>Chal Fot</h1><h2>rating 5 er niche de bara</h2>")
+                messages.warning(request,"Rating must be between 1 and 5")
+                return redirect("/add-product/")
             Product.objects.create(name=name,price=price,rating=rating)
-            return HttpResponse("<h1>Thanks for submission</h1><br><a href='/products/'>return to product menu  </a>")
+
+            messages.success(request,"Product added successfully")
+            return redirect('/add-product/')
         except:
-            return HttpResponse("<h1>Something Went Wrong</h1><h2>Thik thak data de bolod</h2>")
+            messages.error(request,"Something went wrong. Please enter data properly")
+            return redirect('/add-product/')
     return render(request,'productForm.html')
 
 
@@ -66,8 +68,7 @@ def updateProduct(request,id):
             obj.rating = rating
             obj.save()
         except:
-            return HttpResponse(f"""<h2>There was something wrong with input data</h2><br>
-                                <a href='/update/{id}/'>Return to update</a><br>
-                                <a href='/products/'>Return to Product menu</a>""")
-        return redirect(f"/products/")
+            messages.error(request,"Something went wrong. Please enter data properly")
+            return redirect("/update/")
+        return redirect(f"/update/")
     return render(request,'updateProduct.html')
